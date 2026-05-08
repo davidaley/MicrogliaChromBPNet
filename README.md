@@ -248,6 +248,9 @@ bamCoverage \
 Predict the effect of AD and PD GWAS variants on chromatin accessibility using the Corces Lab Batch Query Predictor (BQP) tool.
 
 ### 7a. Prepare variant files
+
+See `scripts/R/prepare_variant_sets.R` and `scripts/Python/run_bqp.py` for details.
+
 Variants filtered to SNVs only (single nucleotide, no indels) and split into four sets:
 - AD GWAS variants overlapping peaks (n=1,671)
 - AD GWAS variants outside peaks (n=6,780)
@@ -255,6 +258,9 @@ Variants filtered to SNVs only (single nucleotide, no indels) and split into fou
 - PD GWAS variants outside peaks (n=1,518)
 
 ### 7b. Run BQP
+
+See `scripts/Bash/run_variant_predictions.sh`
+
 ```bash
 python3 /gladstone/corces/lab/Shared/tools/bqpapplication/run_bqp.py \
     --modelPath BQP_models/DAM \
