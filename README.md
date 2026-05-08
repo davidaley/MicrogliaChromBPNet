@@ -259,7 +259,7 @@ Variants filtered to SNVs only (single nucleotide, no indels) and split into fou
 
 ### 7b. Run BQP
 
-See `scripts/Bash/run_variant_predictions.sh`
+See `scripts/Bash/run_variant_predictions_chunked.sh`
 
 ```bash
 python3 /gladstone/corces/lab/Shared/tools/bqpapplication/run_bqp.py \
