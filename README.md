@@ -59,6 +59,8 @@ BiocManager::install(c("ArchR", "rtracklayer"))
 
 ## Step 1: Microglial State Annotation
 
+See `scripts/R/get_microglia_ATAC_barcodes.R` for details. That data is too large to upload to this repository, however if you have any microglia-specific ATAC-seq ArchR project, the code should work as intended.
+
 ### 1a. ATAC-based annotation
 
 Load the ArchR project and compute average DAM/homeostatic gene scores per cell from the GeneScoreMatrix.
@@ -78,6 +80,8 @@ Select top 10,000 non-overlapping DAM and homeostatic barcodes based on ATAC gen
 ---
 
 ## Step 2: BAM Subsetting
+
+See `scripts/Bash/subset_microglia_bam.sh` for details.
 
 Subset the merged microglia BAM by cell barcode to create subtype-specific BAMs.
 
@@ -101,6 +105,9 @@ samtools index homeostatic_microglia.bam
 ## Step 3: Peak Calling & Preprocessing
 
 ### 3a. Call peaks with MACS2
+
+See `scripts/Bash/call_microglia_peaks.sh` for details.
+
 ```bash
 macs2 callpeak \
     -t homeostatic_microglia.bam \
@@ -115,6 +122,9 @@ macs2 callpeak \
 | DAM | 103,858 | 102,077 |
 
 ### 3b. Filter blacklist regions
+
+See `scripts/Bash/filter_blacklist_regions.sh` for details.
+
 ```bash
 bedtools slop -i blacklist.bed.gz -g hg38.chrom.sizes -b 1057 > temp_blacklist.bed
 bedtools intersect -v -a homeostatic_peaks.narrowPeak -b temp_blacklist.bed \
@@ -122,6 +132,9 @@ bedtools intersect -v -a homeostatic_peaks.narrowPeak -b temp_blacklist.bed \
 ```
 
 ### 3c. Generate non-peak background regions
+
+See `scripts/Bash/prep_nonpeaks_microglia.sh` for details.
+
 ```bash
 chrombpnet prep nonpeaks \
     -g hg38.fa \
