@@ -206,7 +206,7 @@ export CUDA_VISIBLE_DEVICES=$SGE_GPU
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 ```
 
-Trained ChromBPNet models can be found at this Dropbox link: `https://www.dropbox.com/scl/fo/znq2qpcajqh4w4dh6q1us/AGiIoTqIIuF19HtTx8tQGJ8?rlkey=9u2kqzsn40khlzuqqk1w42zqt&st=v9u4hmt9&dl=0`
+Trained ChromBPNet models can be found at this [Dropbox link](https://www.dropbox.com/scl/fo/znq2qpcajqh4w4dh6q1us/AGiIoTqIIuF19HtTx8tQGJ8?rlkey=9u2kqzsn40khlzuqqk1w42zqt&st=v9u4hmt9&dl=0).
 
 ---
 
@@ -273,7 +273,7 @@ python3 /gladstone/corces/lab/Shared/tools/bqpapplication/run_bqp.py \
 ```
 
 ### 7c. Visualize top variants
-See `scripts/compare_variant_predictions_DAM_homeostatic.ipynb` for code to visualize predicted profiles and sequence importance scores (DeepSHAP) for top variants side-by-side across DAM and homeostatic models.
+See `scripts/Python/compare_variant_predictions_DAM_homeostatic.ipynb` for code to visualize predicted profiles and sequence importance scores (DeepSHAP) for top variants side-by-side across DAM and homeostatic models.
 
 ---
 
