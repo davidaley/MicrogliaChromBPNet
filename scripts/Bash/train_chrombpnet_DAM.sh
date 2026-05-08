@@ -1,0 +1,49 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -o /gladstone/corces/lab/users/daley/PD_microglia/logs
+#$ -e /gladstone/corces/lab/users/daley/PD_microglia/logs
+#$ -cwd
+#$ -j y
+#$ -q gpu.q
+#$ -l mem_free=32G
+#$ -l scratch=50G
+#$ -l h_rt=72:00:00
+#$ -l gpu_mem=5000
+#$ -l hostname=!qb3-idgpu10
+#$ -r y
+
+echo "Job started: $(date)"
+echo "Running on host: $(hostname)"
+
+module load CBI miniforge3
+source $(conda info --base)/etc/profile.d/conda.sh
+conda activate chrombpnet
+
+module load cuda
+export CUDA_VISIBLE_DEVICES=${SGE_GPU:-0}
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+
+echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
+nvidia-smi
+echo "TF GPU test: $(python -c 'import tensorflow as tf; print(tf.config.list_physical_devices("GPU"))')"
+
+BASE=/gladstone/corces/lab/users/daley/PD_microglia
+TUTORIAL=/gladstone/corces/lab/users/daley/chrombpnet/chrombpnet_tutorial
+
+mkdir -p $BASE/chrombpnet_model/DAM $BASE/logs
+
+echo "Training DAM ChromBPNet model: $(date)"
+chrombpnet pipeline \
+    -ibam $BASE/ChromatinAccessibility/DAM_microglia.bam \
+    -d ATAC \
+    -g $TUTORIAL/data/downloads/hg38.fa \
+    -c $TUTORIAL/data/downloads/hg38.chrom.sizes \
+    -p $BASE/ChromatinAccessibility/peaks/DAM_peaks_no_blacklist_filtered.bed \
+    -n $BASE/ChromatinAccessibility/nonpeaks/DAM_negatives.bed \
+    -fl $TUTORIAL/data/splits/fold_0.json \
+    -b $BASE/bias_model/DAM/models/DAM_bias.h5 \
+    -o $BASE/chrombpnet_model/DAM \
+    -fp DAM
+
+echo "Job finished: $(date)"
+[[ -n "$JOB_ID" ]] && qstat -j "$JOB_ID"
