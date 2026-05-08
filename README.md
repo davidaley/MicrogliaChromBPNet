@@ -9,18 +9,18 @@ Final Project for NS219: Encoder-Decoder Models for Neuroscience
 
 ## Background
 
-Large-scale genome-wide association studies (GWAS) have identified dozens of loci associated with AD risk, including variants near *APOE*, *BIN1*, *CLU*, and *TREM2*, and similarly for PD near *SNCA*, *LRRK2*, and *GBA*. However, the vast majority of these variants fall outside protein-coding sequences, making their functional interpretation challenging. Understanding *how* these noncoding variants alter gene regulation requires knowledge of the cell-type-specific regulatory landscape (i.e. which genomic regions are accessible, which transcription factors (TFs) bind there, and how genetic variation disrupts TF binding).
+Large-scale genome-wide association studies (GWAS) have identified dozens of loci associated with Alzheimer's disease (AD) risk, including variants near *APOE*, *BIN1*, *CLU*, and *TREM2*, and similarly for Parkinson's disease (PD) near *SNCA*, *LRRK2*, and *GBA*. However, the vast majority of these variants fall outside protein-coding sequences, making their functional interpretation challenging. Understanding *how* these noncoding variants alter gene regulation requires knowledge of the cell-type-specific regulatory landscape (i.e. which genomic regions are accessible, which transcription factors (TFs) bind there, and how genetic variation disrupts TF binding).
 
-Chromatin accessibility, measured by ATAC-seq, provides a genome-wide readout of regulatory element activity, marking active enhancers and promoters where TFs bind and modulate gene expression. Critically, chromatin accessibility is highly cell type-specific, meaning that to functionally interpret GWAS variants we need cell type-resolved models of the regulatory genome.
+Chromatin accessibility, measured by ATAC-seq, provides a genome-wide readout of gene regulatory activity, marking active enhancers and promoters where TFs bind and modulate gene expression. Critically, chromatin accessibility is highly cell type-specific, meaning that to functionally interpret GWAS variants we need cell type-specific models of the regulatory genome.
 
-Microglia are the resident immune cells of the brain and among the most genetically implicated cell types in both AD and PD. They exist in distinct functional states: **homeostatic microglia** maintain brain homeostasis under normal conditions, while **disease-associated microglia (DAM)** adopt an activated state in neurodegeneration, characterized by upregulation of *TREM2*, *SPP1*, and *APOE* vs. *P2RY12*, *CX3CR1*, and *TMEM119* in homeostatic cells. Whether disease-associated variants differentially affect chromatin accessibility across these states is an open and important question.
+In this project, I focused on microglia only. Microglia are the resident immune cells of the CNS and among the most strongly implicated cell types in both AD and PD. They exist in distinct functional states: **homeostatic microglia** maintain brain homeostasis under normal conditions, while **disease-associated microglia (DAM)** adopt an activated state in neurodegeneration, characterized by upregulation of *TREM2*, *SPP1*, and *APOE* vs *P2RY12*, *CX3CR1*, and *TMEM119* in homeostatic cells. Whether disease-associated variants differentially affect chromatin accessibility across these states is an open question.
 
 This project trains cell state-specific **ChromBPNet** models on single-nucleus ATAC-seq data from PD patient-derived microglia to:
 1. Learn sequence models of chromatin accessibility for DAM vs homeostatic microglia
 2. Evaluate model performance at base-pair resolution
 3. Predict the effect of AD/PD GWAS variants on chromatin accessibility in each microglial state
 
-ChromBPNet is a dilated convolutional neural network that takes 2114bp DNA sequences as input and predicts base-pair resolution ATAC-seq signal. It uses a two-component architecture: a **bias model** that captures Tn5 insertion sequence preference, and a **ChromBPNet model** that learns cell-type-specific TF binding patterns after bias correction.
+ChromBPNet is a dilated convolutional neural network that takes 2114bp DNA sequences as input and predicts base-pair resolution ATAC-seq signal in 1,000bp windows. It uses a two-component architecture: a **bias model** that captures Tn5 transposase enzyme insertion sequence preference, and a **ChromBPNet model** that learns cell-type-specific TF binding patterns after bias correction.
 
 ---
 
@@ -281,10 +281,14 @@ See `scripts/Python/compare_variant_predictions_DAM_homeostatic.ipynb` for code 
 
 - Successfully trained ChromBPNet models for DAM and homeostatic microglia
 - Models achieve Pearson R ~0.65-0.68 on held-out peaks
-- Variant effect predictions show higher predicted effect sizes (signed JSD) for variants overlapping peaks vs outside peaks, validating model specificity
-- Top variants with largest predicted effects in both DAM and homeostatic states identified for follow-up visualization
+- Variant effect predictions show higher predicted effect sizes for variants overlapping peaks vs outside peaks, validating model specificity
+- Top variants with largest predicted effects in both DAM and homeostatic states identified for follow-up visualization and (hopefully) future downstream experimental validation
 
 ---
+
+## Declaration of AI-assisted writing technologies
+
+I used Claude Pro to help perform light editing of programming scripts and formatting of sections for this README, however I did not use it to generate completely new programming scripts or fully write any text for this README, and whenever it was used, I made sure to review and edit any and all of the content that was produced.
 
 ## References
 
