@@ -172,6 +172,8 @@ chrombpnet bias pipeline \
     -fp homeostatic
 ```
 
+Trained bias models can be found at `data/DAM_bias.h5` and `data/homeostatic_bias.h5`.
+
 ---
 
 ## Step 5: ChromBPNet Model Training
@@ -203,6 +205,8 @@ module load cuda
 export CUDA_VISIBLE_DEVICES=$SGE_GPU
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 ```
+
+Trained ChromBPNet models can be found at this Dropbox link: `https://www.dropbox.com/scl/fo/znq2qpcajqh4w4dh6q1us/AGiIoTqIIuF19HtTx8tQGJ8?rlkey=9u2kqzsn40khlzuqqk1w42zqt&st=v9u4hmt9&dl=0`
 
 ---
 
