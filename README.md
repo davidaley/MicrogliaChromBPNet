@@ -59,7 +59,7 @@ BiocManager::install(c("ArchR", "rtracklayer"))
 
 ## Step 1: Microglial State Annotation
 
-See `scripts/R/get_microglia_ATAC_barcodes.R` for details. That data is too large to upload to this repository, however if you have any microglia-specific ATAC-seq ArchR project, the code should work as intended.
+See `scripts/R/get_microglia_ATAC_barcodes.R` for details. That microglia ATAC-seq object that I used for model training is too large to upload to this repository, however if you have any microglia-specific ATAC-seq ArchR project, the code should work as intended.
 
 ### 1a. ATAC-based annotation
 
