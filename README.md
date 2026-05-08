@@ -154,6 +154,8 @@ chrombpnet prep nonpeaks \
 
 ## Step 4: Bias Model Training
 
+See `scripts/Bash/train_bias_model_homeostatic.sh` and `scripts/Bash/train_bias_model_DAM.sh` for details.
+
 Train a Tn5 insertion bias model for each subtype (GPU required).
 
 ```bash
@@ -173,6 +175,8 @@ chrombpnet bias pipeline \
 ---
 
 ## Step 5: ChromBPNet Model Training
+
+See `scripts/Bash/train_chrombpnet_homeostatic.sh` and `scripts/Bash/train_chrombpnet_DAM.sh` for details.
 
 Train the full ChromBPNet model using the trained bias model (GPU required).
 
