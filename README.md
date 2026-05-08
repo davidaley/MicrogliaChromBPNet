@@ -9,13 +9,13 @@ Final Project for NS219: Encoder-Decoder Models for Neuroscience
 
 ## Background
 
-Large-scale genome-wide association studies (GWAS) have identified dozens of loci associated with AD risk — including variants near *APOE*, *BIN1*, *CLU*, and *TREM2*, and similarly for PD near *SNCA*, *LRRK2*, and *GBA*. However, the vast majority of these variants fall outside protein-coding sequences, making their functional interpretation challenging. Understanding *how* these noncoding variants alter gene regulation requires knowledge of the cell-type-specific regulatory landscape (i.e. which genomic regions are accessible, which transcription factors (TFs) bind there, and how genetic variation disrupts TF binding).
+Large-scale genome-wide association studies (GWAS) have identified dozens of loci associated with AD risk, including variants near *APOE*, *BIN1*, *CLU*, and *TREM2*, and similarly for PD near *SNCA*, *LRRK2*, and *GBA*. However, the vast majority of these variants fall outside protein-coding sequences, making their functional interpretation challenging. Understanding *how* these noncoding variants alter gene regulation requires knowledge of the cell-type-specific regulatory landscape (i.e. which genomic regions are accessible, which transcription factors (TFs) bind there, and how genetic variation disrupts TF binding).
 
-Chromatin accessibility, measured by ATAC-seq, provides a genome-wide readout of regulatory element activity, marking active enhancers and promoters where TFs bind and modulate gene expression. Critically, chromatin accessibility is highly cell-type-specific, meaning that to functionally interpret GWAS variants we need cell-type-resolved models of the regulatory genome.
+Chromatin accessibility, measured by ATAC-seq, provides a genome-wide readout of regulatory element activity, marking active enhancers and promoters where TFs bind and modulate gene expression. Critically, chromatin accessibility is highly cell type-specific, meaning that to functionally interpret GWAS variants we need cell type-resolved models of the regulatory genome.
 
 Microglia are the resident immune cells of the brain and among the most genetically implicated cell types in both AD and PD. They exist in distinct functional states: **homeostatic microglia** maintain brain homeostasis under normal conditions, while **disease-associated microglia (DAM)** adopt an activated state in neurodegeneration, characterized by upregulation of *TREM2*, *SPP1*, and *APOE* vs. *P2RY12*, *CX3CR1*, and *TMEM119* in homeostatic cells. Whether disease-associated variants differentially affect chromatin accessibility across these states is an open and important question.
 
-This project trains cell-state-specific **ChromBPNet** models on single-cell ATAC-seq data from PD patient-derived microglia to:
+This project trains cell state-specific **ChromBPNet** models on single-nucleus ATAC-seq data from PD patient-derived microglia to:
 1. Learn sequence models of chromatin accessibility for DAM vs homeostatic microglia
 2. Evaluate model performance at base-pair resolution
 3. Predict the effect of AD/PD GWAS variants on chromatin accessibility in each microglial state
