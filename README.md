@@ -218,6 +218,9 @@ export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 | Profile norm JSD | 0.211 | 0.231 |
 
 ### 6b. Predicted vs observed bigwigs
+
+See `scripts/Bash/generate_observed_bigwigs.sh` and `scripts/Bash/generate_predicted_bigwigs.sh` for details.
+
 Generate predicted accessibility bigwigs and compare to observed ATAC signal at specific loci across training, validation, and test chromosomes.
 
 ```bash
